@@ -2,12 +2,10 @@
 
 import { program } from 'commander';
 
-const command = () => {
-  console.log('Compares two configuration files and shows a difference.');
-};
-
 program
+  .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
   .version('0.0.1')
-  .action(command)
-  .parse(process.argv);
+  .option('-f, --format [type]', 'output usage');
+
+program.parse(process.argv);
