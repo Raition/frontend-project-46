@@ -42,6 +42,7 @@ export default [
           allow: ['__filename', '__dirname'],
         },
       ],
+      'no-tabs': 'off',
       'import/extensions': [
         'error',
         {

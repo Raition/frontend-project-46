@@ -2,6 +2,7 @@
 
 import { program } from 'commander';
 import parseFile from '../src/fileParse.js';
+import diff from '../src/diff.js';
 
 program
   .name('gendiff')
@@ -15,8 +16,7 @@ program
       console.log(file1.split('.').at(-1));
       console.log(file2.split('.').at(-1));
     }
-    console.log(parseFile(file1));
-    console.log(parseFile(file2));
+    diff(parseFile(file1), parseFile(file2));
   });
 
 program.parse(process.argv);
