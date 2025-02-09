@@ -1,3 +1,6 @@
+install:
+ npm install
+
 publish:
 	npm publish --dry-run
 
@@ -9,3 +12,6 @@ lint:
 
 fix:
 	npx eslint --fix .
+
+report: 
+	npx jest --coverage
