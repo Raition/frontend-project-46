@@ -1,5 +1,6 @@
 {
   "timeout": 20,
   "verbose": true,
+  "rid": false,
   "host": "hexlet.io"
 }
