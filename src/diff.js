@@ -1,30 +1,31 @@
-const diff = (obj1, obj2) => {
-  const processedKeys = [];
-  const result = [];
-  // eslint-disable-next-line no-restricted-syntax
-  for (const [key, value] of Object.entries(obj1)) {
-    if (Object.hasOwn(obj2, key) && obj2[key] === value) {
-      console.log(`     ${key}: ${value}`);
-      result.push('=');
-      processedKeys.push(key);
-    } else if (Object.hasOwn(obj2, key) && obj2[key] !== value) {
-      console.log(`  -  ${key}: ${value}`);
-      console.log(`  +  ${key}: ${obj2[key]}`);
-      result.push('-', '+');
-      processedKeys.push(key);
-    } else {
-      console.log(`  -  ${key}: ${value}`);
-      result.push('-');
-    }
-  }
-  // eslint-disable-next-line no-restricted-syntax
-  for (const [key, value] of Object.entries(obj2)) {
-    if (!processedKeys.includes(key)) {
-      console.log(`  +  ${key}: ${value}`);
-      result.push('+');
-    }
-  }
-  return result.join('');
+const getSortedKeys = (obj1, obj2) => {
+  const allKeys = new Set([...Object.keys(obj1), ...Object.keys(obj2)]);
+  return [...allKeys].sort();
 };
 
-export default diff;
+const buildDiffTree = (obj1, obj2) => {
+  const keys = getSortedKeys(obj1, obj2);
+
+  return keys.map((key) => {
+    const value1 = obj1[key];
+    const value2 = obj2[key];
+
+    if (typeof value1 === 'object' && value1 !== null && typeof value2 === 'object' && value2 !== null) {
+      return { key, type: 'nested', children: buildDiffTree(value1, value2) };
+    }
+    if (!(key in obj2)) {
+      return { key, type: 'removed', value: value1 };
+    }
+    if (!(key in obj1)) {
+      return { key, type: 'added', value: value2 };
+    }
+    if (value1 !== value2) {
+      return {
+        key, type: 'changed', oldValue: value1, newValue: value2,
+      };
+    }
+    return { key, type: 'unchanged', value: value1 };
+  });
+};
+
+export default buildDiffTree;
