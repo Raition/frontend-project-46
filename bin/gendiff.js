@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import parseFile from '../src/fileParse.js';
+import path from 'path';
+import * as parsers from '../src/fileParse.js';
 import diff from '../src/diff.js';
 
 program
@@ -12,7 +13,15 @@ program
   .arguments('<file1> <file2>')
   .action((file1, file2) => {
     console.log('{');
-    diff(parseFile(file1), parseFile(file2));
+    if ((path.extname(file1) === '.yaml' || path.extname(file1) === '.yml') && (path.extname(file2) === '.yaml' || path.extname(file2) === '.yml')) {
+      diff(parsers.getFileYaml(file1), parsers.getFileYaml(file2));
+    } else if ((path.extname(file1) === '.yaml' || path.extname(file1) === '.yml') && path.extname(file2) === '.json') {
+      diff(parsers.getFileYaml(file1), parsers.getFileJSON(file2));
+    } else if (path.extname(file1) === '.json' && (path.extname(file2) === '.yaml' || path.extname(file2) === '.yml')) {
+      diff(parsers.getFileJSON(file1), parsers.getFileYaml(file2));
+    }	else {
+      diff(parsers.getFileJSON(file1), parsers.getFileJSON(file2));
+    }
     console.log('}');
   });
 

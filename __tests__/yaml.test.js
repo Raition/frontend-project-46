@@ -14,8 +14,8 @@ beforeEach(() => {
 });
 
 test('Добавленные значения', () => {
-  const file1 = parsers.getFileJSON(getFixturePath('value1.json'));
-  const file2 = parsers.getFileJSON(getFixturePath('value2.json'));
+  const file1 = parsers.getFileYaml(getFixturePath('value1.yml'));
+  const file2 = parsers.getFileYaml(getFixturePath('value2.yml'));
 
   res = diff(file1, file2);
 
@@ -23,8 +23,8 @@ test('Добавленные значения', () => {
 });
 
 test('Удаленные значения', () => {
-  const file1 = parsers.getFileJSON(getFixturePath('empty1.json'));
-  const file2 = parsers.getFileJSON(getFixturePath('empty2.json'));
+  const file1 = parsers.getFileYaml(getFixturePath('empty1.yml'));
+  const file2 = parsers.getFileYaml(getFixturePath('empty2.yml'));
 
   res = diff(file1, file2);
 
@@ -32,8 +32,8 @@ test('Удаленные значения', () => {
 });
 
 test('Одинаковые значения', () => {
-  const file1 = parsers.getFileJSON(getFixturePath('same1.json'));
-  const file2 = parsers.getFileJSON(getFixturePath('same2.json'));
+  const file1 = parsers.getFileYaml(getFixturePath('same1.yml'));
+  const file2 = parsers.getFileYaml(getFixturePath('same2.yml'));
 
   res = diff(file1, file2);
 
@@ -41,8 +41,8 @@ test('Одинаковые значения', () => {
 });
 
 test('Разные значения', () => {
-  const file1 = parsers.getFileJSON(getFixturePath('add1.json'));
-  const file2 = parsers.getFileJSON(getFixturePath('add2.json'));
+  const file1 = parsers.getFileYaml(getFixturePath('add1.yml'));
+  const file2 = parsers.getFileYaml(getFixturePath('add2.yml'));
 
   res = diff(file1, file2);
 
@@ -50,8 +50,8 @@ test('Разные значения', () => {
 });
 
 test('Множественные значения', () => {
-  const file1 = parsers.getFileJSON(getFixturePath('host1.json'));
-  const file2 = parsers.getFileJSON(getFixturePath('host2.json'));
+  const file1 = parsers.getFileYaml(getFixturePath('host1.yml'));
+  const file2 = parsers.getFileYaml(getFixturePath('host2.yml'));
 
   res = diff(file1, file2);
 
