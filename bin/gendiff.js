@@ -3,7 +3,7 @@
 import { program } from 'commander';
 import parseFile from '../src/fileParse.js';
 import buildDiffTree from '../src/diff.js';
-import formatStylish from '../src/formtters/stylish.js';
+import { formatPlain, formatStylish } from '../src/formatters/index.js';
 
 program
   .name('gendiff')
@@ -18,7 +18,11 @@ program
     const diffTree = buildDiffTree(data1, data2);
 
     if (options.format === 'stylish') {
+      console.log('{');
       console.log(formatStylish(diffTree));
+      console.log('}');
+    } else if (options.format === 'plain') {
+      console.log(formatPlain(diffTree));
     } else {
       console.log('Unsupported format');
     }

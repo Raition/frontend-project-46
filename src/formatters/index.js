@@ -33,4 +33,34 @@ const formatStylish = (diffTree, depth = 1) => {
   return result.join('\n');
 };
 
-export default formatStylish;
+const formatValue = (value) => {
+  if (typeof value === 'object' && value !== null) return '[complex value]';
+  return typeof value === 'string' ? `'${value}'` : value;
+};
+
+// eslint-disable-next-line arrow-body-style
+const formatPlain = (tree, currentPath = '') => {
+  return tree
+    .map((node) => {
+      const fullPath = currentPath ? `${currentPath}.${node.key}` : node.key;
+
+      switch (node.type) {
+        case 'nested':
+          return formatPlain(node.children, fullPath);
+        case 'added':
+          return `Property '${fullPath}' was added with value: ${formatValue(node.value)}`;
+        case 'removed':
+          return `Property '${fullPath}' was removed`;
+        case 'changed':
+          return `Property '${fullPath}' was updated. From ${formatValue(node.oldValue)} to ${formatValue(node.newValue)}`;
+        case 'unchanged':
+          return null;
+        default:
+          throw new Error(`Unknown type: ${node.type}`);
+      }
+    })
+    .filter(Boolean)
+    .join('\n');
+};
+
+export { formatStylish, formatPlain };
