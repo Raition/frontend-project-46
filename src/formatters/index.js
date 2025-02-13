@@ -29,8 +29,8 @@ const formatStylish = (diffTree, depth = 1) => {
         throw new Error(`Unknown type: ${type}`);
     }
   });
-
-  return result.join('\n');
+  const body = result.join('\n');
+  return `{\n  ${body}\n}`;
 };
 
 const formatValue = (value) => {
