@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "type": "module",
   "description": "[![Actions Status](https://github.com/Raition/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Raition/frontend-project-46/actions)",
-  "main": "./src/fileParse.js",
+	"bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+	"simple-git-hooks": {
+    "pre-push": "npx lint-staged"
+  },
   "scripts": {
     "test": "npx jest"
   },
@@ -11,13 +16,13 @@
     "type": "git",
     "url": "git+https://github.com/Raition/frontend-project-46.git"
   },
-  "bin": {
-    "gendiff": "bin/gendiff.js"
-  },
-  "author": "",
+  "author": "Rid Tomson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Raition/frontend-project-46/issues"
+  },
+	"lint-staged": {
+    "*.js": "eslint --fix"
   },
   "homepage": "https://github.com/Raition/frontend-project-46#readme",
   "devDependencies": {
