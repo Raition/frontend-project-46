@@ -10,13 +10,13 @@ const stringify = (value, depth) => {
   return `{\n${entries}\n${getIndent(depth)}  }`;
 };
 
-const formatStylish = (diffTree, depth = 1) => {
+const getStylish = (diffTree, depth = 1) => {
   const indent = getIndent(depth);
   const result = diffTree.map((node) => {
     const { key, type } = node;
     switch (type) {
       case 'nested':
-        return `${indent}  ${key}: {\n${formatStylish(node.children, depth + 1)}\n${indent}  }`;
+        return `${indent}  ${key}: {\n${getStylish(node.children, depth + 1)}\n${indent}  }`;
       case 'added':
         return `${indent}+ ${key}: ${stringify(node.value, depth)}`;
       case 'removed':
@@ -29,9 +29,11 @@ const formatStylish = (diffTree, depth = 1) => {
         throw new Error(`Unknown type: ${type}`);
     }
   });
-  const body = result.join('\n');
-  return `{\n  ${body}\n}`;
+
+  return result.join('\n');
 };
+
+const formatStylish = (diffTree) => `{\n${getStylish(diffTree)}\n}`;
 
 const formatValue = (value) => {
   if (typeof value === 'object' && value !== null) return '[complex value]';
