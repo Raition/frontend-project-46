@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
 import { program } from 'commander';
-import parseFile from '../src/fileParse.js';
-import buildDiffTree from '../src/diff.js';
-import { formatPlain, formatStylish, formatJson } from '../src/formatters/index.js';
+import genDiff from '../src/gendiff.js';
 
 program
   .name('gendiff')
@@ -13,21 +11,7 @@ program
   .argument('<file1>')
   .argument('<file2>')
   .action((file1, file2, options) => {
-    const data1 = parseFile(file1);
-    const data2 = parseFile(file2);
-    const diffTree = buildDiffTree(data1, data2);
-
-    if (options.format === 'stylish') {
-      console.log('{');
-      console.log(formatStylish(diffTree));
-      console.log('}');
-    } else if (options.format === 'plain') {
-      console.log(formatPlain(diffTree));
-    } else if (options.format === 'json') {
-      console.log(formatJson(diffTree));
-    }	else {
-      console.log('Unsupported format');
-    }
+    console.log(genDiff(file1, file2, options.format));
   });
 
 program.parse(process.argv);
