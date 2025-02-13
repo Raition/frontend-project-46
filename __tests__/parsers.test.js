@@ -25,5 +25,5 @@ test('parse YAML file correctly', () => {
 test('throws error for unsupported file format', () => {
   const unsupportedFile = getFixturePath('text.txt');
 
-  expect(() => parseFile(unsupportedFile)).toThrowError('Unsupported file format: .txt');
+  expect(() => parseFile(unsupportedFile)).toThrow('Unsupported file format: .txt');
 });
