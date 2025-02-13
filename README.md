@@ -7,4 +7,4 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/66bb22d9b46099f6ce93/test_coverage)](https://codeclimate.com/github/Raition/frontend-project-46/test_coverage)
 
-[![asciicast](https://asciinema.org/a/5lYn2GDE586wtb0hSnvgzKTfv.svg)](https://asciinema.org/a/5lYn2GDE586wtb0hSnvgzKTfv)
+[![asciicast](https://asciinema.org/a/703199.svg)](https://asciinema.org/a/703199)

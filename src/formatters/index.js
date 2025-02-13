@@ -63,4 +63,6 @@ const formatPlain = (tree, currentPath = '') => {
     .join('\n');
 };
 
-export { formatStylish, formatPlain };
+const formatJson = (objects) => JSON.stringify(objects, null, 2);
+
+export { formatStylish, formatPlain, formatJson };

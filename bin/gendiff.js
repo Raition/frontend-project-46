@@ -3,7 +3,7 @@
 import { program } from 'commander';
 import parseFile from '../src/fileParse.js';
 import buildDiffTree from '../src/diff.js';
-import { formatPlain, formatStylish } from '../src/formatters/index.js';
+import { formatPlain, formatStylish, formatJson } from '../src/formatters/index.js';
 
 program
   .name('gendiff')
@@ -23,7 +23,9 @@ program
       console.log('}');
     } else if (options.format === 'plain') {
       console.log(formatPlain(diffTree));
-    } else {
+    } else if (options.format === 'json') {
+      console.log(formatJson(diffTree));
+    }	else {
       console.log('Unsupported format');
     }
   });
