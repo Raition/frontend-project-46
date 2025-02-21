@@ -6,11 +6,13 @@ common:
     key: value
     doge:
       wow: ''
+
 group1:
   baz: bas
   foo: bar
   nest:
     key: value
+
 group2:
   abc: 12345
   deep:

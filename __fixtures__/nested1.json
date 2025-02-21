@@ -1,8 +1,0 @@
-{
-  "key1": "value1",
-  "key2": "value2",
-  "nested": {
-    "subkey1": "subvalue1",
-    "subkey2": "subvalue2"
-  }
-}
