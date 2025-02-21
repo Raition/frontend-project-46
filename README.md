@@ -21,7 +21,7 @@
 
 ## Установка:
 
-1. Склонируйте репозиторий с помощью команды: _"git clone https://github.com/raitionfrontend-project-46git"_
+1. Склонируйте репозиторий с помощью команды: _"git clone https://github.com/Raition/frontend-project-46.git"_
 2. Перейдите в директорию проекта _cd frontend-project-46_
 3. Установите необходимые зависимости с помощью команды: _make install_
 
