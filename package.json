@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-	"main": "./src/gendiff.js",
+	"main": "src/index.js",
   "description": "[![Actions Status](https://github.com/Raition/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Raition/frontend-project-46/actions)",
 	"bin": {
     "gendiff": "bin/gendiff.js"
